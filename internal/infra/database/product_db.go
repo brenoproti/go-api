@@ -1,6 +1,8 @@
 package database
 
 import (
+	"fmt"
+
 	"github.com/brenoproti/go-api/internal/entity"
 	"gorm.io/gorm"
 )
@@ -36,9 +38,9 @@ func (p *Product) FindAll(page, limit int, sort string) ([]entity.Product, error
 	}
 	if page != 0 && limit != 0 {
 		offset := (page - 1) * limit
-		err = p.DB.Offset(offset).Limit(limit).Order(sort).Find(&products).Error
+		err = p.DB.Offset(offset).Limit(limit).Order(fmt.Sprintf("created_at %s", sort)).Find(&products).Error
 	} else {
-		err = p.DB.Order(sort).Find(&products).Error
+		err = p.DB.Order(fmt.Sprintf("created_at %s", sort)).Find(&products).Error
 	}
 	if err != nil {
 		return nil, err
