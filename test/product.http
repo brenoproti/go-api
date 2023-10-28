@@ -1,0 +1,9 @@
+@hostname=localhost
+@port=8000
+POST http://{{hostname}}:{{port}}/products
+Content-Type: application/json
+
+{
+  "name": "Product 1",
+  "price": 100
+}

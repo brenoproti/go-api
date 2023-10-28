@@ -19,7 +19,7 @@ func TestCreateNewProduct(t *testing.T) {
 	db.AutoMigrate(&entity.Product{})
 	product, err := entity.NewProduct("Product 1", 10.5)
 	assert.NoError(t, err)
-	productDb := NewProduct(db)
+	productDb := NewProductDB(db)
 	err = productDb.Create(product)
 	assert.NoError(t, err)
 	product, err = productDb.FindById(product.ID.String())
@@ -33,7 +33,7 @@ func TestFindAllProducts(t *testing.T) {
 		t.Error(err)
 	}
 	db.AutoMigrate(&entity.Product{})
-	productDb := NewProduct(db)
+	productDb := NewProductDB(db)
 	for i := 1; i < 24; i++ {
 		product, err := entity.NewProduct(fmt.Sprintf("Product %d", i), rand.Float64()*100)
 		assert.NoError(t, err)
@@ -71,7 +71,7 @@ func TestFindById(t *testing.T) {
 		t.Error(err)
 	}
 	db.AutoMigrate(&entity.Product{})
-	productDb := NewProduct(db)
+	productDb := NewProductDB(db)
 	product, err := entity.NewProduct("Product 1", 10.5)
 	assert.NoError(t, err)
 	err = productDb.Create(product)
@@ -90,7 +90,7 @@ func TestUpdateProduct(t *testing.T) {
 		t.Error(err)
 	}
 	db.AutoMigrate(&entity.Product{})
-	productDb := NewProduct(db)
+	productDb := NewProductDB(db)
 	product, err := entity.NewProduct("Product 1", 10.5)
 	assert.NoError(t, err)
 	err = productDb.Create(product)
@@ -113,7 +113,7 @@ func TestDeleteProduct(t *testing.T) {
 		t.Error(err)
 	}
 	db.AutoMigrate(&entity.Product{})
-	productDb := NewProduct(db)
+	productDb := NewProductDB(db)
 	product, err := entity.NewProduct("Product 1", 10.5)
 	assert.NoError(t, err)
 	err = productDb.Create(product)
