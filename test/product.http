@@ -23,3 +23,6 @@ Content-Type: application/json
 
 ###
 DELETE http://{{hostname}}:{{port}}/products/92b1ee23-2e58-426a-b91c-afa961e2d9e1
+
+###
+GET http://{{hostname}}:{{port}}/products?page=1&limit=10
