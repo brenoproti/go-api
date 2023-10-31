@@ -15,11 +15,10 @@ GET http://{{hostname}}:{{port}}/{{baseUrl}}/92b1ee23-2e58-426a-b91c-afa961e2d9e
 Content-Type: application/json
 
 ###
-PUT http://{{hostname}}:{{port}}/{{baseUrl}}/92b1ee23-2e58-426a-b91c-afa961e2d9e1
+POST http://{{hostname}}:{{port}}/{{baseUrl}}/generate_token
 Content-Type: application/json
 
 {
-  "name": "John Doe",
   "email": "user1@email.com",
   "password": "123456"
 }
