@@ -1,8 +1,10 @@
 @hostname=localhost
 @port=8000
 @baseUrl=products
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTk3ODExMzYsInN1YiI6IjgyNWYwZGUxLTc4ZWYtNDU4Yi05MTJhLWU1MmE4NmZkNWYyYyJ9._iCy4fisQFdHLRtLfpfxP94sN8zSe6m4X7hh3DWrAwE
 POST http://{{hostname}}:{{port}}/{{baseUrl}}
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "Product 2",
@@ -12,10 +14,12 @@ Content-Type: application/json
 ###
 GET http://{{hostname}}:{{port}}/{{baseUrl}}/92b1ee23-2e58-426a-b91c-afa961e2d9e1
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 ###
 PUT http://{{hostname}}:{{port}}/{{baseUrl}}/92b1ee23-2e58-426a-b91c-afa961e2d9e1
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "Product 1 (updated 2)",
@@ -24,7 +28,8 @@ Content-Type: application/json
 
 ###
 DELETE http://{{hostname}}:{{port}}/{{baseUrl}}/92b1ee23-2e58-426a-b91c-afa961e2d9e1
+Authorization: Bearer {{token}}
 
 ###
 GET http://{{hostname}}:{{port}}/{{baseUrl}}?page=1&limit=3
-
+Authorization: Bearer {{token}}

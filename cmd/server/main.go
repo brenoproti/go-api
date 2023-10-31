@@ -10,6 +10,7 @@ import (
 	"github.com/brenoproti/go-api/internal/infra/webserver/handlers"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/jwtauth"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -30,11 +31,16 @@ func main() {
 	productDb := database.NewProductDB(db)
 	productHandler := handlers.NewProductHandler(productDb)
 
-	r.Post("/products", productHandler.Create)
-	r.Put("/products/{id}", productHandler.Update)
-	r.Get("/products/{id}", productHandler.FindById)
-	r.Get("/products", productHandler.GetProducts)
-	r.Delete("/products/{id}", productHandler.Delete)
+	r.Route("/products", func(r chi.Router) {
+		r.Use(jwtauth.Verifier(config.TokenAuth))
+		r.Use(jwtauth.Authenticator)
+
+		r.Post("/", productHandler.Create)
+		r.Put("/{id}", productHandler.Update)
+		r.Get("/{id}", productHandler.FindById)
+		r.Get("/", productHandler.GetProducts)
+		r.Delete("/{id}", productHandler.Delete)
+	})
 
 	userDb := database.NewUser(db)
 	userHandler := handlers.NewUserHandler(userDb, config.TokenAuth, config.JWTExpiresIn)
