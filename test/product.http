@@ -4,24 +4,22 @@ POST http://{{hostname}}:{{port}}/products
 Content-Type: application/json
 
 {
-  "name": "Product 1",
+  "name": "Product 2",
   "price": 100
 }
 
 ###
-GET http://{{hostname}}:{{port}}/products/19703d85-6138-4b99-b818-ca3f076cf0b7
+GET http://{{hostname}}:{{port}}/products/92b1ee23-2e58-426a-b91c-afa961e2d9e1
 Content-Type: application/json
 
-{
-  "name": "Product 1",
-  "price": 100
-}
-
 ###
-PUT http://{{hostname}}:{{port}}/products/19703d85-6138-4b99-b818-ca3f076cf0b7
+PUT http://{{hostname}}:{{port}}/products/92b1ee23-2e58-426a-b91c-afa961e2d9e1
 Content-Type: application/json
 
 {
   "name": "Product 1 (updated 2)",
   "price": 100.5
 }
+
+###
+DELETE http://{{hostname}}:{{port}}/products/92b1ee23-2e58-426a-b91c-afa961e2d9e1

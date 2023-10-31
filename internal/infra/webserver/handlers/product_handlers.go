@@ -75,7 +75,21 @@ func (p *ProductHandler) Update(w http.ResponseWriter, r *http.Request) {
 	}
 	err = p.ProductDB.Update(&product)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+}
+
+func (p *ProductHandler) Delete(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+	if id == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	err := p.ProductDB.Delete(id)
+	if err != nil {
+		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 	w.WriteHeader(http.StatusOK)
