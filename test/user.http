@@ -1,12 +1,13 @@
 @hostname=localhost
 @port=8000
-@baseUrl=products
+@baseUrl=users
 POST http://{{hostname}}:{{port}}/{{baseUrl}}
 Content-Type: application/json
 
 {
-  "name": "Product 2",
-  "price": 100
+  "name": "John Doe",
+  "email": "user1@email.com",
+  "password": "123456"
 }
 
 ###
@@ -18,13 +19,10 @@ PUT http://{{hostname}}:{{port}}/{{baseUrl}}/92b1ee23-2e58-426a-b91c-afa961e2d9e
 Content-Type: application/json
 
 {
-  "name": "Product 1 (updated 2)",
-  "price": 100.5
+  "name": "John Doe",
+  "email": "user1@email.com",
+  "password": "123456"
 }
 
 ###
 DELETE http://{{hostname}}:{{port}}/{{baseUrl}}/92b1ee23-2e58-426a-b91c-afa961e2d9e1
-
-###
-GET http://{{hostname}}:{{port}}/{{baseUrl}}?page=1&limit=3
-
