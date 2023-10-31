@@ -7,3 +7,21 @@ Content-Type: application/json
   "name": "Product 1",
   "price": 100
 }
+
+###
+GET http://{{hostname}}:{{port}}/products/19703d85-6138-4b99-b818-ca3f076cf0b7
+Content-Type: application/json
+
+{
+  "name": "Product 1",
+  "price": 100
+}
+
+###
+PUT http://{{hostname}}:{{port}}/products/19703d85-6138-4b99-b818-ca3f076cf0b7
+Content-Type: application/json
+
+{
+  "name": "Product 1 (updated 2)",
+  "price": 100.5
+}

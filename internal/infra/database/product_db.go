@@ -49,10 +49,11 @@ func (p *ProductDB) FindAll(page, limit int, sort string) ([]entity.Product, err
 }
 
 func (p *ProductDB) Update(product *entity.Product) error {
-	_, err := p.FindById(product.ID.String())
+	p2, err := p.FindById(product.ID.String())
 	if err != nil {
 		return err
 	}
+	product.CreatedAt = p2.CreatedAt
 	return p.DB.Save(product).Error
 }
 
