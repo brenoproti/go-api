@@ -1,0 +1,15 @@
+basePath: /
+host: localhost:8000
+info:
+  contact: {}
+  description: This is a sample server Product server.
+  termsOfService: http://swagger.io/terms/
+  title: Go API
+  version: "1.0"
+paths: {}
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

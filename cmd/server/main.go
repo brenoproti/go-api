@@ -16,6 +16,16 @@ import (
 	"gorm.io/gorm"
 )
 
+//@title Go API
+//@version 1.0
+//@description This is a sample server Product server.
+//@termsOfService http://swagger.io/terms/
+
+// @host localhost:8000
+// @BasePath /
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 func main() {
 	config := configs.LoadConfig("cmd/server")
 	fmt.Printf("%v", config)
@@ -27,6 +37,7 @@ func main() {
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	r.Use(middleware.Recoverer)
 
 	productDb := database.NewProductDB(db)
 	productHandler := handlers.NewProductHandler(productDb)
