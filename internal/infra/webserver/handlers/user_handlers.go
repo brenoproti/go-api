@@ -25,6 +25,17 @@ func NewUserHandler(userDB database.UserInterface, jwt *jwtauth.JWTAuth, jwtExpi
 	}
 }
 
+// Create user godoc
+// @Summary Create a new user
+// @Description Create a new user
+// @Tags users
+// @Accept  json
+// @Produce  json
+// @Param request body dto.UserDTO true "User info"
+// @Success 201 {string} string	"User created"
+// @Failure 400 {string} string "Bad request"
+// @Failure 500 {string} string "Internal server error"
+// @Router /users [post]
 func (h *UserHandler) Create(w http.ResponseWriter, r *http.Request) {
 	var user dto.UserDTO
 	err := json.NewDecoder(r.Body).Decode(&user)
@@ -33,6 +44,10 @@ func (h *UserHandler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer r.Body.Close()
+	if user.Name == "" || user.Email == "" || user.Password == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 	entity, err := entity.NewUser(user.Name, user.Email, user.Password)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -47,6 +62,17 @@ func (h *UserHandler) Create(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 }
 
+// GetJWT godoc
+// @Summary Get JWT token
+// @Description Get JWT token
+// @Tags users
+// @Accept  json
+// @Produce  json
+// @Param request body dto.LoginDTO true "User info"
+// @Success 201 {string} access_token "Token created"
+// @Failure 400 {string} string "Bad request"
+// @Failure 500 {string} string "Internal server error"
+// @Router /users/generate_token [post]
 func (h *UserHandler) GetJWT(w http.ResponseWriter, r *http.Request) {
 	var user dto.LoginDTO
 	err := json.NewDecoder(r.Body).Decode(&user)

@@ -6,7 +6,7 @@ type ProductDTO struct {
 }
 
 type UserDTO struct {
-	Name     string `json:"name"`
+	Name     string `json:"name" required:"true"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
