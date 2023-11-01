@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/brenoproti/go-api/configs"
+	_ "github.com/brenoproti/go-api/docs"
 	"github.com/brenoproti/go-api/internal/entity"
 	"github.com/brenoproti/go-api/internal/infra/database"
 	"github.com/brenoproti/go-api/internal/infra/webserver/handlers"
@@ -14,12 +15,20 @@ import (
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
 //@title Go API
 //@version 1.0
 //@description This is a sample server Product server.
 //@termsOfService http://swagger.io/terms/
+
+//@contact.name Breno Proti
+//@contact.email brenoproti@gmail
+
+//@license.name MIT
+//@license.url http://opensource.org/licenses/MIT
 
 // @host localhost:8000
 // @BasePath /
@@ -59,5 +68,6 @@ func main() {
 	r.Post("/users", userHandler.Create)
 	r.Post("/users/generate_token", userHandler.GetJWT)
 
+	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8000/docs/doc.json")))
 	http.ListenAndServe(":8000", r)
 }

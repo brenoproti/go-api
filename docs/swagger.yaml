@@ -1,8 +1,13 @@
 basePath: /
 host: localhost:8000
 info:
-  contact: {}
+  contact:
+    email: brenoproti@gmail
+    name: Breno Proti
   description: This is a sample server Product server.
+  license:
+    name: MIT
+    url: http://opensource.org/licenses/MIT
   termsOfService: http://swagger.io/terms/
   title: Go API
   version: "1.0"

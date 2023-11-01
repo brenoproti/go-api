@@ -4,7 +4,14 @@
         "description": "This is a sample server Product server.",
         "title": "Go API",
         "termsOfService": "http://swagger.io/terms/",
-        "contact": {},
+        "contact": {
+            "name": "Breno Proti",
+            "email": "brenoproti@gmail"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        },
         "version": "1.0"
     },
     "host": "localhost:8000",
